@@ -9,6 +9,8 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
+    console.log("PRODUCTION BACKEND URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
+
     const apiRes = await api.post("auth/register", body);
 
     const cookieStore = await cookies();

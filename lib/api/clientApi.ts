@@ -36,7 +36,7 @@ export async function fetchNotes(
   return response.data;
 }
 
-export async function fetchNoteById(id: Note["id"]) {
+export async function fetchNoteById(id: Note["_id"]) {
   const response = await nextServer.get<Note>(`/notes/${id}`);
 
   return response.data;
@@ -48,6 +48,7 @@ export async function createNote(newTask: FormValues) {
 }
 
 export async function deleteNote(id: string) {
+  console.log(id);
   const response = await nextServer.delete<Note>(`/notes/${id}`);
   return response.data;
 }
@@ -81,14 +82,3 @@ export async function updateMe(data: UpdateUserData) {
   const res = await nextServer.patch<User>("/users/me", data);
   return res.data;
 }
-
-// fetchNotes
-// fetchNoteById
-// createNote
-// deleteNote
-// register
-// login
-// logout
-// checkSession
-// getMe
-// updateMe
