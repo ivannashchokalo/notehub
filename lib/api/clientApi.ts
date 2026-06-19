@@ -55,6 +55,7 @@ export async function deleteNote(id: string) {
 
 export async function register(data: UserRegisterData) {
   const response = await nextServer.post<User>("/auth/register", data);
+  console.log(response);
   return response.data;
 }
 
