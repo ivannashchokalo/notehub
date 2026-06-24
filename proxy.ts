@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { parse } from "cookie";
-import { checkSession } from "./lib/api/serverApi";
+import { refreshSession } from "./lib/api/serverApi";
 
 const privateRoure = ["/notes", "/profile"];
 const publicRoute = ["/sign-in", "/sign-up"];
@@ -24,7 +24,7 @@ export async function proxy(req: NextRequest) {
     }
   } else {
     if (refreshToken) {
-      const data = await checkSession();
+      const data = await refreshSession();
       const setCookie = data.headers["set-cookie"];
 
       if (setCookie) {
@@ -42,6 +42,9 @@ export async function proxy(req: NextRequest) {
           if (parsed.refreshToken) {
             cookie.set("refreshToken", parsed.refreshToken, options);
           }
+          if (parsed.sessionId) {
+            cookie.set("sessionId", parsed.sessionId, options);
+          }
         }
         if (isPublic) {
           return NextResponse.redirect(new URL("/", req.url), {
@@ -50,13 +53,12 @@ export async function proxy(req: NextRequest) {
             },
           });
         }
-        if (isPrivate) {
-          return NextResponse.next({
-            headers: {
-              Cookie: cookie.toString(),
-            },
-          });
-        }
+
+        return NextResponse.next({
+          headers: {
+            Cookie: cookie.toString(),
+          },
+        });
       } else {
         if (isPublic) {
           return NextResponse.next();
@@ -77,5 +79,5 @@ export async function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/notes/:path*", "/profile/:path*", "/sign-up", "/sign-in"],
+  matcher: ["/", "/notes/:path*", "/profile/:path*", "/sign-in", "/sign-up"],
 };

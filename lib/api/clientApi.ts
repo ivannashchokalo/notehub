@@ -19,7 +19,7 @@ export interface UserRegisterData {
   password: string;
 }
 
-interface CheckSessionReq {
+interface refreshSessionReq {
   success: boolean;
 }
 
@@ -69,8 +69,8 @@ export async function getMe() {
   return response.data;
 }
 
-export async function checkSession() {
-  const res = await nextServer.get<CheckSessionReq>("/auth/session");
+export async function refreshSession() {
+  const res = await nextServer.post<refreshSessionReq>("/auth/refresh");
   return res.data;
 }
 

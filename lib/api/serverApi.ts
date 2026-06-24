@@ -50,10 +50,10 @@ export async function getMe() {
   return res.data;
 }
 
-export async function checkSession() {
+export async function refreshSession() {
   const cookieStore = await cookies();
 
-  const res = await nextServer.get("/auth/session", {
+  const res = await nextServer.post("/auth/refresh", {
     headers: {
       Cookie: cookieStore.toString(),
     },

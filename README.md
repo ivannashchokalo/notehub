@@ -1,8 +1,8 @@
-# 📝 TaskFlow
+# 📝 NoteHub
 
 ## 📝 About the Project
 
-**TaskFlow** is a productivity web application built with Next.js 16, TypeScript, and App Router.
+**NoteHub** is a productivity web application built with Next.js 16, TypeScript, and App Router.
 
 Users can create, organize, search, and manage their personal tasks and records. The project demonstrates authentication, protected routes, dynamic routing, modal pages, and modern state management.
 

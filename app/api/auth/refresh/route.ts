@@ -5,18 +5,24 @@ import { parse } from "cookie";
 import { isAxiosError } from "axios";
 import { logErrorResponse } from "../../_utils/utils";
 
-export async function GET() {
+export async function POST() {
   try {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken")?.value;
     const refreshToken = cookieStore.get("refreshToken")?.value;
+
+    console.log("access:", cookieStore.get("accessToken")?.value);
+
+    console.log("refresh:", cookieStore.get("refreshToken")?.value);
+
+    console.log("session:", cookieStore.get("sessionId")?.value);
 
     if (accessToken) {
       return NextResponse.json({ success: true });
     }
 
     if (refreshToken) {
-      const apiRes = await api.get("auth/session", {
+      const apiRes = await api.post("auth/refresh", null, {
         headers: {
           Cookie: cookieStore.toString(),
         },
