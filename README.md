@@ -89,13 +89,13 @@ app/
 ### Frontend
 
 ```bash
-https://your-notehub-app.vercel.app
+https://notehub-git-main-ivannashchokalos-projects.vercel.app/
 ```
 
 ### Backend API
 
 ```bash
-https://nodejs-hw-5-crhj.onrender.com
+https://notehub-api-dxyp.onrender.com
 ```
 
 ---
@@ -114,7 +114,7 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
 ## ⚙️ Installation
 
 ```bash
-git clone git@github.com:ivannashchokalo/task-flow.git
+git clone git clone git@github.com:ivannashchokalo/notehub.git
 
 cd note-hub
 
