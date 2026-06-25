@@ -1,19 +1,25 @@
 # 📝 NoteHub
 
+## 🌍 Live Demo
+
+Frontend: https://notehub-brown.vercel.app
+Backend API: https://notehub-api-dxyp.onrender.com
+
 ## 📝 About the Project
 
 **NoteHub** is a productivity web application built with Next.js 16, TypeScript, and App Router.
 
-Users can create, organize, search, and manage their personal tasks and records. The project demonstrates authentication, protected routes, dynamic routing, modal pages, and modern state management.
+Users can create, organize, search, and manage their personal notes. The project demonstrates authentication, protected routes, dynamic routing, modal pages, and modern state management.
 
 ---
 
 ## ✨ Features
 
 * 🔐 Authentication (Sign Up / Sign In / Logout)
-* 📝 Create and delete notes
+* 📝 Create, view and delete notes
 * 🔍 Search notes with debouncing
 * 🏷️ Filter notes by category
+* 🖼️ Upload profile avatar
 * 📄 Dynamic note details pages
 * 👤 User profile page
 * 🪟 Modal note preview
@@ -36,6 +42,7 @@ Users can create, organize, search, and manage their personal tasks and records.
 * 🗂️ Zustand
 * 🍪 Cookies
 * 📄 React Paginate
+* 📤 React Dropzone
 * ⏳ use-debounce
 
 ---
@@ -66,6 +73,8 @@ POST /notes
 DELETE /notes/{id}
 
 GET /users/me
+PATCH /users/me
+PATCH /users/me/avatar
 ```
 
 ---
@@ -88,15 +97,11 @@ app/
 
 ### Frontend
 
-```bash
-https://notehub-git-main-ivannashchokalos-projects.vercel.app/
-```
+https://notehub-brown.vercel.app
 
 ### Backend API
 
-```bash
 https://notehub-api-dxyp.onrender.com
-```
 
 ---
 
@@ -114,9 +119,9 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:3000
 ## ⚙️ Installation
 
 ```bash
-git clone git clone git@github.com:ivannashchokalo/notehub.git
+git clone git@github.com:ivannashchokalo/notehub.git
 
-cd note-hub
+cd notehub
 
 npm install
 
@@ -141,6 +146,17 @@ http://localhost:3000
 
 ---
 
+## 🧪 Demo Account
+
+Use these credentials to explore the application with pre-created notes.
+
+```text
+Email: **user@gmail.com**
+Password: **12345678**
+```
+
+---
+
 ## 👩‍💻 Author
 
 **Ivanna Shchokalo**
@@ -149,5 +165,4 @@ http://localhost:3000
 * ⚛️ React & Next.js Developer
 * 🟢 Node.js & Express Developer
 
-GitHub:
-👉 https://github.com/ivannashchokalo
+🔗 GitHub: https://github.com/ivannashchokalo
