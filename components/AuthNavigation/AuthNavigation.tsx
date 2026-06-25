@@ -25,6 +25,11 @@ export default function AuthNavigation() {
       {isAuthenticated && (
         <>
           <li className={css.navigationItem}>
+            <Link href="/notes/filter/all" className={css.navigationLink}>
+              Notes
+            </Link>
+          </li>
+          <li className={css.navigationItem}>
             <Link
               href="/profile"
               prefetch={false}
@@ -44,7 +49,6 @@ export default function AuthNavigation() {
 
       {!isAuthenticated && (
         <>
-          {" "}
           <li className={css.navigationItem}>
             <Link
               href="/sign-in"

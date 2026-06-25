@@ -1,15 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import css from "./EditProfilePage.module.css";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
-import { updateMe } from "@/lib/api/clientApi";
+import { updateAvatar, updateMe } from "@/lib/api/clientApi";
+import AvatarUploader from "@/components/AvatarUploader/AvatarUploader";
+import { useState } from "react";
 
 export default function Edit() {
   const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
   const router = useRouter();
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const handleUpdate = async (formData: FormData) => {
     if (!user) return;
@@ -17,11 +19,20 @@ export default function Edit() {
     const username = formData.get("username") as string;
 
     try {
+      if (avatarFile) {
+        const avatarFormData = new FormData();
+
+        avatarFormData.append("avatar", avatarFile);
+
+        await updateAvatar(avatarFormData);
+      }
+
       const updatedUser = await updateMe({
         username,
       });
 
       setUser(updatedUser);
+
       router.push("/profile");
     } catch (error) {
       console.error("Update failed", error);
@@ -37,9 +48,7 @@ export default function Edit() {
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
 
-        {user?.avatar && (
-          <Image src={user.avatar} alt="User Avatar" width={120} height={120} />
-        )}
+        <AvatarUploader avatar={user?.avatar} onFileSelect={setAvatarFile} />
 
         <form className={css.profileInfo} action={handleUpdate}>
           <div className={css.usernameWrapper}>

@@ -83,3 +83,9 @@ export async function updateMe(data: UpdateUserData) {
   const res = await nextServer.patch<User>("/users/me", data);
   return res.data;
 }
+
+export const updateAvatar = async (avatarFormData: FormData) => {
+  const { data } = await nextServer.patch("users/me/avatar", avatarFormData);
+
+  return data;
+};
